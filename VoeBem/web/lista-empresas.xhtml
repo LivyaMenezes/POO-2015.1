@@ -1,16 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>VoeBem</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form>
+                <p:layout fullPage="true">
+
+                    <p:layoutUnit position="north" size="230" resizable="false" closable="false" collapsible="true">
+                        <h:outputText value = " Logado como cliente: #{managedBeanClientes.cliente.nome} " 
+                                      rendered="#{managedBeanClientes.login}"/> 
+                        <h:commandButton value = "Minha conta" action="dados-cliente" 
+                                         rendered="#{managedBeanClientes.login}"/>
+                        <h:commandButton value = "Sair" action="#{managedBeanClientes.logout()}" 
+                                         rendered="#{managedBeanClientes.login}"/>    
+
+                        <h:outputText value = " Logado como empresa: #{managedBeanEmpresa.empresa.nome} "
+                                      rendered="#{managedBeanEmpresa.login}"/> 
+                        <h:commandButton value = "Minha conta" action="dados-empresa" 
+                                         rendered="#{managedBeanEmpresa.login}"/>
+                        <h:commandButton value = "Sair" action="#{managedBeanEmpresa.logout()}" 
+                                         rendered="#{managedBeanEmpresa.login}"/>
+                    </p:layoutUnit>
+
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <p:menuitem value="Inicio" outcome="index" icon="ui-icon-home">
+                            <f:param name="i" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Sou Cliente" outcome="login-cliente">
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Sou Empresa" outcome="login-empresa">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
+                        <p:menuitem value="Linhas Aéreas" outcome="lista-empresas">
+                            <f:param name="i" value="3" />
+                        </p:menuitem>
+                        <p:menuitem value="Quem Somos" outcome="quem-somos" >
+                            <f:param name="i" value="4" />
+                        </p:menuitem>
+                        <p:menuitem value="Compre Sua Passagem" outcome="compra-passagem" rendered="#{!managedBeanClientes.login}">
+                             <f:param name="i" value="5" rendered=""/>
+                        </p:menuitem>
+                        <p:menuitem value="Cadastrar Avião" outcome="cadastro-aviao" rendered="#{managedBeanEmpresa.login}">
+                            <f:param name="i" value="6" rendered=""/>
+                        </p:menuitem>
+                        <p:menuitem value="Cadastrar Viagem" outcome="cadastro-viagem" rendered="#{managedBeanEmpresa.login}">
+                            <f:param name="i" value="7" />
+                        </p:menuitem>
+                    </p:tabMenu>
+
+                    <p:layoutUnit position="center">
+                        <p:panel header ="Linhas Aéreas">
+                            <p:messages showDetail="true"/>
+                            <h:outputText value ="Linhas aéreas cadastradas:"/>
+                            <p:dataTable value = "#{managedBeanEmpresa.listaEmpresa}" var ="l">
+                                <p:column headerText ="Nome">
+                                    <h:outputText value ="#{l.nome}"/>
+                                </p:column>
+                                <p:column headerText="Telefone">
+                                    <h:outputText value =" #{l.telefone}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                            <p:messages showDetail="true"/>
+                        </p:panel>
+                    </p:layoutUnit>
+                </p:layout>
+            </h:form>
+        </h:body>
+
+    </f:view>
 </html>
