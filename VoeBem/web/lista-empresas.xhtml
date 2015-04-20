@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Voe Bem</title>
+                <title>VoeBem</title>
             </f:facet>
         </h:head>
 
@@ -18,14 +18,14 @@
                 <p:layout fullPage="true">
 
                     <p:layoutUnit position="north" size="230" resizable="false" closable="false" collapsible="true">
-                        <h:outputText value = " Cliente Logado:#{managedBeanClientes.cliente.nome} " 
+                        <h:outputText value = " Logado como cliente: #{managedBeanClientes.cliente.nome} " 
                                       rendered="#{managedBeanClientes.login}"/> 
                         <h:commandButton value = "Minha conta" action="dados-cliente" 
                                          rendered="#{managedBeanClientes.login}"/>
                         <h:commandButton value = "Sair" action="#{managedBeanClientes.logout()}" 
                                          rendered="#{managedBeanClientes.login}"/>    
 
-                        <h:outputText value = "Empresa Logada: #{managedBeanEmpresa.empresa.nome} "
+                        <h:outputText value = " Logado como empresa: #{managedBeanEmpresa.empresa.nome} "
                                       rendered="#{managedBeanEmpresa.login}"/> 
                         <h:commandButton value = "Minha conta" action="dados-empresa" 
                                          rendered="#{managedBeanEmpresa.login}"/>
@@ -61,13 +61,24 @@
                     </p:tabMenu>
 
                     <p:layoutUnit position="center">
-                        <p:panel header="Bem-vindo">
-                            Seja bem vindo ao Voe Bem. 
-                        </p:panel>                        
+                        <p:panel header ="Linhas Aéreas">
+                            <p:messages showDetail="true"/>
+                            <h:outputText value ="Linhas aéreas cadastradas:"/>
+                            <p:dataTable value = "#{managedBeanEmpresa.listaEmpresa}" var ="l">
+                                <p:column headerText ="Nome">
+                                    <h:outputText value ="#{l.nome}"/>
+                                </p:column>
+                                <p:column headerText="Telefone">
+                                    <h:outputText value =" #{l.telefone}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                            <p:messages showDetail="true"/>
+                        </p:panel>
                     </p:layoutUnit>
                 </p:layout>
             </h:form>
         </h:body>
+
     </f:view>
 </html>
-
