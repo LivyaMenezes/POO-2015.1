@@ -18,6 +18,7 @@
                 <p:layout fullPage="true">
 
                     <p:layoutUnit position="north" size="230" resizable="false" closable="false" collapsible="true">
+                       <h:graphicImage url="/VoeBem.png" width="1010" height="213"/>
                         <h:outputText value = " Cliente Logado:#{managedBeanClientes.cliente.nome} " 
                                       rendered="#{managedBeanClientes.login}"/> 
                         <h:commandButton value = "Minha conta" action="dados-cliente" 
@@ -49,10 +50,10 @@
                         <p:menuitem value="Quem Somos" outcome="quem-somos" >
                             <f:param name="i" value="4" />
                         </p:menuitem>
-                        <p:menuitem value="Cadastre-se como Cliente" outcome="cadastro-cliente">
+                        <p:menuitem value="Cadastro Cliente" outcome="cadastro-cliente">
                             <f:param name="i" value="5" />
                         </p:menuitem>
-                        <p:menuitem value="Cadastre sua Empresa" outcome="cadastro-empresa">
+                        <p:menuitem value="Cadastro Empresa" outcome="cadastro-empresa">
                             <f:param name="i" value="6" />
                         </p:menuitem>
                         <p:menuitem value="Compre Sua Passagem" outcome="consulta-aviao" rendered="#{!managedBeanClientes.login}">
@@ -68,7 +69,8 @@
 
                     <p:layoutUnit position="center">
                         <p:panel header="Bem-vindo">
-                            Seja bem vindo ao Voe Bem. 
+                            Seja bem vindo ao Voe Bem!
+                            
                         </p:panel>                        
                     </p:layoutUnit>
                 </p:layout>
