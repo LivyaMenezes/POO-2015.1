@@ -60,17 +60,21 @@
                         </p:menuitem>
                     </p:tabMenu>
 
-                     <p:layoutUnit position="center">
-                        <p:panel header="Login para empresas">
-                            <p:panelGrid columns="2">
-                                <h:outputText value = "CNPJ: "/>
-                                <p:inputMask mask="99.999.999/9999-99" value = "#{managedBeanEmpresa.empresa.cnpj}" requiredMessage="O CNPJ é obrigatório"/>
-                                <h:outputText value = "Senha: "/> 
-                                <p:password value = "#{managedBeanEmpresa.empresa.senha}" required="true"/>
-                            </p:panelGrid>
-                            <h:commandButton id="form1" value = "Entrar" action = "#{managedBeanEmpresa.loginEmpresa()}"/>
+                    <p:layoutUnit position="center">
+                        <p:panel header ="Linhas Aéreas">
+                            <p:messages showDetail="true"/>
+                            <h:outputText value ="Linhas aéreas cadastradas:"/>
+                            <p:dataTable value = "#{managedBeanEmpresa.listaEmpresa}" var ="l">
+                                <p:column headerText ="Nome">
+                                    <h:outputText value ="#{l.nome}"/>
+                                </p:column>
+                                <p:column headerText="Telefone">
+                                    <h:outputText value =" #{l.telefone}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                            <p:messages showDetail="true"/>
                         </p:panel>
-                        <p:messages showDetail="true"/>
                     </p:layoutUnit>
                 </p:layout>
             </h:form>
