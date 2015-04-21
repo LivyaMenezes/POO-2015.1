@@ -33,7 +33,7 @@
                                          rendered="#{managedBeanEmpresa.login}"/>
                     </p:layoutUnit>
 
-                   <p:layoutUnit position="west" size="259" collapsible="true">
+                   
                         <p:tabMenu activeIndex="#{param.i}">
                         <p:menuitem value="Inicio" outcome="index" icon="ui-icon-home">
                             <f:param name="i" value="0" />
@@ -66,7 +66,6 @@
                             <f:param name="i" value="9" />
                         </p:menuitem>
                     </p:tabMenu>
-                    </p:layoutUnit>
                     <p:layoutUnit position="center">
                         <c:if test="#{!managedBeanEmpresa.login}">
                             <p:panel id="panel" header="Passo 1: Consulta de avião">  
