@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Voe Bem</title>
+            </f:facet>
+        </h:head>
+        <body>
+            <h:form>
+                <div>Sua compra foi efetuada com sucesso. Imprima este voucher e troque pela sua passagem no guichê da empresa.
+                    <p><p:layoutUnit position="west" size="50" collapsible="true" style="max-width: 700px">
+                            <p:panel header="Dados da compra">
+                                <p><p:panelGrid columns="2">
+                                        <h:outputText value = "Cliente"/>
+                                        <h:outputText value = "#{managedBeanVenda.cliente.nome} (CPF: #{managedBeanVenda.cliente.cpf})"/>
+                                        <h:outputText value = "Empresa"/>
+                                        <h:outputText value = "#{managedBeanViagem.viagem.empresa.nome}"/>
+                                        <h:outputText value = "Origem e Destino"/>
+                                        <h:outputText value = "#{managedBeanViagem.viagem.origem} para #{managedBeanViagem.viagem.destino}"/>
+                                        <h:outputText value = "Hora e Data" />
+                                        <h:outputText value = "#{managedBeanViagem.formatarHora(managedBeanViagem.viagem.hora)} em #{managedBeanViagem.formatarData(managedBeanViagem.viagem.data)}" />
+                                        <h:outputText value= "Valor" />
+                                        <h:outputText value = "#{managedBeanViagem.viagem.valor}" />
+                                        <h:outputText value= "Poltrona" />
+                                        <h:outputText value = "#{managedBeanPoltrona.poltronaSelecionada}" />
+                                    </p:panelGrid></p>
+                            </p:panel>
+                        </p:layoutUnit></p>
+                    <p><h:commandButton value = "Voltar ao site" action="index"/></p>
+                </div>
+            </h:form>
+        </body>
+    </f:view>
+</html>
