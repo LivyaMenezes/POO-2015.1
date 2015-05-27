@@ -24,15 +24,15 @@ import viagens.Viagem;
 @Entity
 public class Venda implements Serializable{
     
-    private Cliente id_cliente;
+    private Cliente id_cliente;   //atributos
     private long id_poltrona;
     private Viagem id_viagem;
     private double preco;
-    private long codigo;
+    private long codigoVenda;
     private Date data;
     
     
-    public Venda(){
+    public Venda(){ //construtor vazio
         
     }
     public Venda(Cliente id_cliente, int id_poltrona, Viagem id_viagem, double preco, Date data){
@@ -42,8 +42,8 @@ public class Venda implements Serializable{
         this.preco = preco; 
         this.data = data;
     }
-
-    @Temporal(TemporalType.DATE)
+//metodos get's e set's
+    @Temporal(TemporalType.DATE) //Temporal para data
     public Date getData() {
         return data;
     }
@@ -52,7 +52,7 @@ public class Venda implements Serializable{
         this.data = data;
     }
 
-    @ManyToOne
+    @ManyToOne                        //relacao entre a venda e cliente
     public Cliente getId_cliente() {
         return id_cliente;
     }
@@ -69,7 +69,7 @@ public class Venda implements Serializable{
         this.id_poltrona = id_poltrona;
     }
 
-    @ManyToOne
+    @ManyToOne                       //relacao entre venda/viagem
     public Viagem getId_viagem() {
         return id_viagem;
     }
@@ -85,14 +85,14 @@ public class Venda implements Serializable{
     public void setPreco(double preco) {
         this.preco = preco;
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public long getCodigo() {
-        return codigo;
+    @Id      //@ de identificacao
+    @GeneratedValue(strategy = GenerationType.AUTO) //auto-incremento
+    public long getCodigoVenda() {
+        return codigoVenda;
     }
 
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setCodigoVenda(long codigoVenda) {
+        this.codigoVenda = codigoVenda;
     }
     
 }

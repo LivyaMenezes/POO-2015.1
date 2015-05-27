@@ -22,6 +22,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import vendas.Venda;
 
 /**
  *
@@ -184,5 +185,7 @@ public class Viagem implements Serializable {
     public void setListaDestinos(List<Destinos> listaDestinos) {
         this.listaDestinos = listaDestinos;
     }
+
+   
     
 }
