@@ -14,7 +14,7 @@ import javax.ejb.Stateless;
 import viagens.Viagem;
 
 /**
- *
+ *aqui é onde fica todas as regras de negocio
  * @author Raquel Calado
  */
 @Stateless
