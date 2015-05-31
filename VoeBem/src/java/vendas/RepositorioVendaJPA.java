@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Essa classe se comunica com o Banco de dados mysql
  * @author Raquel Calado
  */
 @Stateless
