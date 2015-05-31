@@ -12,7 +12,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * aqui vc chama os metodos feitos no RepositorioVendaJPA, aqui é uma interface que se comunica a com o negocio
  * @author Raquel Calado
  */
 @Local
