@@ -155,6 +155,11 @@ public class Fachada  implements Serializable{
     public List<Venda> vendasPorViagem(long id_viagem) throws ErroInternoException, VendaInexistenteException {
         return this.venda.vendasPorViagem(id_viagem);
     }
+    
+      public void removerVenda(long codigoVenda) throws ErroInternoException, VendaInexistenteException {
+        this.venda.remover(codigoVenda);
+                
+    }
 
     public void adicionar(Viagem v) throws ErroInternoException, ViagemExistenteException {
         this.viagem.adicionar(v);

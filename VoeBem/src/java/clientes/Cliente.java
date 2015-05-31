@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import vendas.Venda;
 
 /**
  *
@@ -89,5 +90,7 @@ public class Cliente implements Serializable {
     public String toString(){
         return (this.nome);
     }
+
+ 
     
 }

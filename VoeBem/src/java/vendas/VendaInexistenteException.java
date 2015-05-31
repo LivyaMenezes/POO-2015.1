@@ -10,9 +10,13 @@ package vendas;
  * @author Raquel Calado
  */
 public class VendaInexistenteException extends Exception {
+<<<<<<< HEAD
     
+=======
+    //excecao criada sempre que for lancada no programa vai exibir 
+>>>>>>> b0fe8e9247898cf9bdfab85ca8b4d8ece5f29c36
     public VendaInexistenteException(){
-        super("A venda não existe!");
+        super("A venda não existe!"); //essa mensagem
     }
     
 }

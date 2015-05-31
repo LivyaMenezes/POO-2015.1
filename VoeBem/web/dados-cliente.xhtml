@@ -1,24 +1,18 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Voe Bem</title>
-            </f:facet>
-        </h:head>
-
-        <h:body>
-            <h:form>
-                <p:layout fullPage="true">
-
-                    <p:layoutUnit position="north" size="230" resizable="false" closable="false" collapsible="true">
-                        <h:outputText value = " Logado como cliente: #{managedBeanClientes.cliente.nome} " 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>VoeBem</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:layout>
+                 <p:layoutUnit position="north" size="230" resizable="false" closable="false" collapsible="true">
+                      <h:graphicImage url="/VoeBem.png" width="1010" height="213"/>   
+                     <h:outputText value = " Logado como cliente: #{managedBeanClientes.cliente.nome} " 
                                       rendered="#{managedBeanClientes.login}"/> 
                         <h:commandButton value = "Minha conta" action="dados-cliente" 
                                          rendered="#{managedBeanClientes.login}"/>
@@ -58,29 +52,29 @@
                         <p:menuitem value="Cadastrar Viagem" outcome="cadastro-viagem" rendered="#{managedBeanEmpresa.login}">
                             <f:param name="i" value="7" />
                         </p:menuitem>
+                        <p:menuitem value="Cancelar Viagem" outcome="cancelar-viagem" rendered="#{managedBeanCliente.login}">
+                            <f:param name="i" value="8" />
+                        </p:menuitem>
                     </p:tabMenu>
-                    <p:layoutUnit position="center">
-                        <c:if test="#{managedBeanEmpresa.login}">
-                        <p:panel header ="Dados Juridicos">
-                            <p:panelGrid columns="2">
-                                <h:outputText value = "Nome:"/>
-                                <h:outputText value = "#{managedBeanEmpresa.empresa.nome}"/>
-                                <h:outputText value = "ID:" />
-                                <h:outputText value = "#{managedBeanEmpresa.empresa.id_empresa}" />
-                                <h:outputText value = "CNPJ:" />
-                                <h:outputText value = "#{managedBeanEmpresa.empresa.cnpj}" />
-                                <h:outputText value= "Telefone:" />
-                                <p:inputMask mask="(99)9999-9999" value = "#{managedBeanEmpresa.empresa.telefone}" />                   
-                            </p:panelGrid>
-                            <p><h:commandButton value="Atualizar informações" action="#{managedBeanEmpresa.atualizarEmpresa()}"/></p>
-                            <p><h:commandButton value="Atualizar senha" action="#{managedBeanEmpresa.atualizarsenhaEmpresa()}"/></p>
-                            <p:messages showDetail ="true"/>
-                        </p:panel>
-                        </c:if>
-                    </p:layoutUnit>
-                </p:layout>
-            </h:form>
-        </h:body>
-    </f:view>
+                
+                   <p:layoutUnit position = "center">
+                    <p:panel header ="Dados da Linha Aérea">
+                        <p:panelGrid columns="2">
+
+                            <h:outputText value = "Nome:"/>
+                            <h:outputText value = "#{managedBeanClientes.cliente.nome}"/>
+                            <h:outputText value = "ID:" />
+                            <h:outputText value = "#{managedBeanClientes.cliente.id_cliente}" />
+                            <h:outputText value = "CPF:" />
+                            <h:outputText value = "#{managedBeanClientes.cliente.cpf}" />
+                            
+                        </p:panelGrid>
+                  </p:panel>
+                  </p:layoutUnit>
+            </p:layout>
+        </h:form>
+
+    </h:body>
 </html>
+
 
