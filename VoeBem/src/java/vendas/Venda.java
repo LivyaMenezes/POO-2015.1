@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 import viagens.Viagem;
 
 /**
- *
+ * Estrutura de dados que constitui uma venda
  * @author Raquel Calado
  */
 @Entity
