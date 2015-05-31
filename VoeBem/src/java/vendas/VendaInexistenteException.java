@@ -6,10 +6,11 @@
 package vendas;
 
 /**
- *
+ * Aqui lança um Exception caso a venda não exista
  * @author Raquel Calado
  */
 public class VendaInexistenteException extends Exception {
+    
     public VendaInexistenteException(){
         super("A venda não existe!");
     }
