@@ -32,6 +32,13 @@
                                          rendered="#{managedBeanEmpresa.login}"/>
                         <h:commandButton value = "Sair" action="#{managedBeanEmpresa.logout()}" 
                                          rendered="#{managedBeanEmpresa.login}"/>
+                        
+                        <h:outputText value = "Administrador Logado: #{managedBeanAdministrador.administrador.nome} "
+                                      rendered="#{managedBeanAdministrador.login}"/> 
+                        <h:commandButton value = "Minha conta" action="dados-administrador" 
+                                         rendered="#{managedBeanAdministrador.login}"/>
+                        <h:commandButton value = "Sair" action="#{managedBeanAdministrador.logout()}" 
+                                         rendered="#{managedBeanAdministrador.login}"/>
                     </p:layoutUnit>
 
                     <p:tabMenu activeIndex="#{param.i}">
@@ -57,6 +64,9 @@
                             <f:param name="i" value="5" />
                         </p:menuitem>
                         <p:menuitem value="Cadastro Empresa" outcome="cadastro-empresa">
+                            <f:param name="i" value="6" />
+                        </p:menuitem>
+                        <p:menuitem value="Cadastro Administrador" outcome="cadastro-administrador">
                             <f:param name="i" value="6" />
                         </p:menuitem>
                         <p:menuitem value="Compre Sua Passagem" outcome="consulta-aviao" rendered="#{!managedBeanClientes.login}">
