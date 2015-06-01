@@ -5,9 +5,9 @@
  */
 package controladores;
 
+import administrador.Administrador;
+import administrador.AdministradorExistenteException;
 import administrador.AdministradorInexistenteException;
-import clientes.Cliente;
-import clientes.ClienteExistenteException;
 import clientes.ClienteInexistenteException;
 import index.ErroInternoException;
 import index.Fachada;
@@ -26,23 +26,23 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class ManagedBeanClientes implements Serializable {
+public class ManagedBeanAdministrador implements Serializable{
     
     @EJB
     private Fachada fachada;
-    private Cliente cliente;
+    private Administrador administrador;
     private boolean login;
 
-    public ManagedBeanClientes() {
-        this.cliente = new Cliente();
+    public ManagedBeanAdministrador() {
+        this.administrador = new Administrador();
     }
     
-    public Cliente getCliente() {
-        return cliente;
+    public Administrador getAdministrador() {
+        return administrador;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
     }
     public boolean isLogin() {
         return login;
@@ -52,34 +52,34 @@ public class ManagedBeanClientes implements Serializable {
         this.login = login;
     }
 
-    public String adicionarCliente() {
+    public String adicionarAdministrador() throws AdministradorExistenteException, AdministradorInexistenteException, ClienteInexistenteException {
         try {
-            this.fachada.adicionar(this.cliente);
+            this.fachada.adicionarAdministrador(this.administrador);
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cadastro realizado com sucesso.");
             contexto.addMessage(null, msg);
-            this.cliente = new Cliente();
+            this.administrador = new Administrador();
 
         } catch (ErroInternoException eie) {
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro Interno", " Ocorreu um erro interno inesperado " + eie.getMessage());
             contexto.addMessage(null, msg);
 
-        } catch (ClienteExistenteException cee) {
+        } catch (AdministradorExistenteException cee) {
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", " Esse cliente já está cadastrado");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", " Esse administrador já está cadastrado");
             contexto.addMessage(null, msg);
-        } catch (ClienteInexistenteException cie) {
+        } catch (AdministradorInexistenteException cie) {
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente Inexistente", "Cliente não existente");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Administrador Inexistente", "Administrador não existente");
             contexto.addMessage(null, msg);
         }
         return null;
     }
 
-    public String removerCliente() throws AdministradorInexistenteException {
+    public String removerAdministrador() throws AdministradorInexistenteException {
         try {
-            this.fachada.remover(cliente.getId_cliente());
+            this.fachada.removerAdm(administrador.getId_administrador());
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cadastro removido com sucesso.");
             contexto.addMessage(null, msg);
@@ -87,17 +87,17 @@ public class ManagedBeanClientes implements Serializable {
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro Interno", " Ocorreu um erro interno inesperado " + eie.getMessage());
             contexto.addMessage(null, msg);
-        } catch (ClienteInexistenteException cie) {
+        } catch (AdministradorInexistenteException cie) {
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente Inexistente", "Cliente não existente");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Administrador Inexistente", "Administrador não existente");
             contexto.addMessage(null, msg);
         }
         return null;
     }
 
-    public String buscarCliente() {
+    public String buscarAdministrador() throws AdministradorInexistenteException {
         try {
-            this.fachada.buscarCliente(cliente.getId_cliente());
+            this.fachada.buscarAdministrador(administrador.getId_administrador());
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cadastro encontrado com sucesso.");
             contexto.addMessage(null, msg);
@@ -105,17 +105,17 @@ public class ManagedBeanClientes implements Serializable {
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro Interno", " Ocorreu um erro interno inesperado " + eie.getMessage());
             contexto.addMessage(null, msg);
-        } catch (ClienteInexistenteException cie) {
+        } catch (AdministradorInexistenteException cie) {
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente Inexistente", "Cliente não existente");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Administrador Inexistente", "Administrador não existente");
             contexto.addMessage(null, msg);
         }
         return null;
     }
 
-    public String atualizarsenhaCliente() throws IOException {
+    public String atualizarsenhaAdministrador() throws IOException {
         try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("atualizarsenha-cliente.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("atualizarsenha-administrador.xhtml");
         }
         catch(IOException ioe){
             throw ioe;
@@ -123,25 +123,25 @@ public class ManagedBeanClientes implements Serializable {
         return null;
     }
 
-    public String senhaatualizadaCliente()  {
+    public String senhaatualizadaAdministrador()  {
         try {
-            this.fachada.atualizar(this.cliente);
-            return "dadospessoais-cliente.xhtml";
+            this.fachada.atualizarAdministrador(this.administrador);
+            return "dadospessoais-administrador.xhtml";
         } catch (ErroInternoException eie) {
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ErroInterno", "Ocorreu um erro interno");
             contexto.addMessage(null, msg);
-        } catch (ClienteInexistenteException cie) {
+        } catch (AdministradorInexistenteException cie) {
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente Inexistente", "Cliente não existente");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Administrador Inexistente", "Administrador não existente");
             contexto.addMessage(null, msg);
         }
         return null;
     }
 
-    public String atualizarCliente() throws ErroInternoException, ClienteInexistenteException {
+    public String atualizarAdministrador() throws ErroInternoException,AdministradorInexistenteException {
         try {
-            this.fachada.atualizar(cliente);
+            this.fachada.atualizarAdministrador(administrador);
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Dados atualizados com sucesso");
             contexto.addMessage(null, msg);
@@ -149,20 +149,20 @@ public class ManagedBeanClientes implements Serializable {
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ErroInterno", "Ocorreu um erro interno");
             contexto.addMessage(null, msg);
-        } catch (ClienteInexistenteException cie) {
+        } catch (AdministradorInexistenteException cie) {
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente Inexistente", "Cliente não existente");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Administrador Inexistente", "Administrador não existente");
             contexto.addMessage(null, msg);
         }
         return null;
     }
 
-    public String loginCliente() throws ErroInternoException, ClienteInexistenteException {
+    public String loginAdministrador() throws ErroInternoException, AdministradorInexistenteException {
         try {
-            this.cliente = this.fachada.loginCliente(cliente.getCpf(), cliente.getSenha());
+            this.administrador = this.fachada.loginAdministrador(administrador.getCpf(), administrador.getSenha());
             this.login = true;
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cliente logado com sucesso");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Administrador logado com sucesso");
             contexto.addMessage(null, msg);
             return "index.xhtml";
         } catch (ErroInternoException eie) {
@@ -170,9 +170,9 @@ public class ManagedBeanClientes implements Serializable {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro Interno", "Ocorreu um errointerno inesperado! " + eie.getMessage());
             contexto.addMessage(null, msg);
 
-        } catch (ClienteInexistenteException cee) {
+        } catch (AdministradorInexistenteException cee) {
             FacesContext contexto = FacesContext.getCurrentInstance();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", "O cliente não está cadastrado no sistema. Verifique o CPF e senha e tente novamente.");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", "O Administrador não está cadastrado no sistema. Verifique o CPF e senha e tente novamente.");
             contexto.addMessage(null, msg);
         }
         return null;
@@ -181,7 +181,7 @@ public class ManagedBeanClientes implements Serializable {
     public String logout() throws ErroInternoException, IOException {
         try{
         login = false;
-        this.cliente = new Cliente();          
+        this.administrador = new Administrador();          
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         }
         catch(IOException ioe){
@@ -190,10 +190,10 @@ public class ManagedBeanClientes implements Serializable {
         return null;
     }
 
-    public List<Cliente> listaClientes() throws ErroInternoException {
+    public List<Administrador> listaAdministrador() throws ErroInternoException {
         try {
-            List<Cliente> listaClientes = this.fachada.listaCliente(cliente);
-            return listaClientes;
+            List<Administrador> listaAdministrador = this.fachada.listaAdministrador(administrador);
+            return listaAdministrador;
         } catch (ErroInternoException e) {
             throw new ErroInternoException(e);
         }

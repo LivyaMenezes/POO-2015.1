@@ -5,6 +5,10 @@
  */
 package index;
 
+import administrador.Administrador;
+import administrador.AdministradorExistenteException;
+import administrador.AdministradorInexistenteException;
+import administrador.CadastroAdministrador;
 import aviao.Aviao;
 import aviao.AviaoExistenteException;
 import aviao.AviaoInexistenteException;
@@ -54,11 +58,15 @@ public class Fachada  implements Serializable{
     private CadastroVenda venda;
     @EJB
     private CadastroViagem viagem;
+    @EJB
+    private CadastroAdministrador administrador;
 
     public Fachada() {
 
     }
 
+    //CLIENTE
+    
     public void adicionar(Cliente cliente) throws ErroInternoException, ClienteExistenteException, ClienteInexistenteException {
         this.cadCliente.adicionar(cliente);
     }
@@ -71,7 +79,7 @@ public class Fachada  implements Serializable{
         this.cadCliente.atualizar(c);
     }
 
-    public void remover(long id_cliente) throws ErroInternoException, ClienteInexistenteException {
+    public void remover(long id_cliente) throws ErroInternoException, ClienteInexistenteException, AdministradorInexistenteException {
         this.cadCliente.remover(id_cliente);
     }
 
@@ -82,6 +90,34 @@ public class Fachada  implements Serializable{
     public List<Cliente> listaCliente(Cliente cliente) throws ErroInternoException {
         return this.cadCliente.listaClientes(cliente);
     }
+    
+    //ADMINISTRADOR
+    
+    public void adicionarAdministrador(Administrador administrador) throws ErroInternoException, AdministradorExistenteException, ClienteInexistenteException, AdministradorInexistenteException {
+        this.administrador.adicionar(administrador);
+    }
+
+    public Administrador buscarAdministrador(long id_administrador) throws ErroInternoException, AdministradorInexistenteException {
+        return this.administrador.buscarAdministrador(id_administrador);
+    }
+
+    public void atualizarAdministrador(Administrador a) throws ErroInternoException, AdministradorInexistenteException {
+        this.administrador.atualizar(a);
+    }
+
+    public void removerAdm(long id_administrador) throws ErroInternoException, AdministradorInexistenteException {
+        this.administrador.remover(id_administrador);
+    }
+
+    public Administrador loginAdministrador(String cpf, String senha) throws ErroInternoException, AdministradorInexistenteException {
+        return this.administrador.loginAdministrador(cpf, senha);
+    }
+
+    public List<Administrador> listaAdministrador(Administrador administrador) throws ErroInternoException {
+        return this.administrador.listaAdministrador(administrador);
+    }
+    
+    //EMPRESA
 
     public void adicionar(Empresa ep) throws ErroInternoException, EmpresaExistenteException {
         this.empresa.adicionar(ep);
