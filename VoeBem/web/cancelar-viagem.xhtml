@@ -30,7 +30,16 @@
                     <p:tabMenu activeIndex="#{param.i}">
                         <p:menuitem value="Inicio" outcome="index" icon="ui-icon-home">
                             <f:param name="i" value="0" />
-                        </p:menuitem>                       
+                        </p:menuitem>
+                        <p:menuitem value="Sou Cliente" outcome="login-cliente">
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Sou Empresa" outcome="login-empresa">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
+                       <p:menuitem value="Sou Administrador" outcome="login-administrador">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
                         <p:menuitem value="Linhas Aéreas" outcome="lista-empresas">
                             <f:param name="i" value="3" />
                         </p:menuitem>
@@ -46,7 +55,6 @@
                         <p:menuitem value="Cadastrar Viagem" outcome="cadastro-viagem" rendered="#{managedBeanEmpresa.login}">
                             <f:param name="i" value="7" />
                         </p:menuitem>
-                      
                     </p:tabMenu>
                 
                    <p:layoutUnit position = "center">
