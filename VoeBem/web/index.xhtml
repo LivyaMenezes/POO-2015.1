@@ -65,6 +65,9 @@
                         <p:menuitem value="Cadastrar Viagem" outcome="cadastro-viagem" rendered="#{managedBeanEmpresa.login}">
                             <f:param name="i" value="9" />
                         </p:menuitem>
+                        <p:menuitem value="Comprar Passagem" outcome="consulta-aviao" rendered="#{managedBeanClientes.login}">
+                            <f:param name="i" value="10" />
+                        </p:menuitem>
                     </p:tabMenu>
 
                     <p:layoutUnit position="center">
