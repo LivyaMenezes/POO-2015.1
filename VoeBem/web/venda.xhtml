@@ -18,7 +18,7 @@
                 <p:layout fullPage="true">
 
                     <p:layoutUnit position="north" size="230" resizable="false" closable="false" collapsible="true">
-                        <h:graphicImage url="/VoeBem.png" width="1010" height="213"/>
+                       <h:graphicImage url="/VoeBem.png" width="1010" height="213"/>
                         <h:outputText value = " Cliente Logado:#{managedBeanClientes.cliente.nome} " 
                                       rendered="#{managedBeanClientes.login}"/> 
                         <h:commandButton value = "Minha conta" action="dados-cliente" 
@@ -32,6 +32,13 @@
                                          rendered="#{managedBeanEmpresa.login}"/>
                         <h:commandButton value = "Sair" action="#{managedBeanEmpresa.logout()}" 
                                          rendered="#{managedBeanEmpresa.login}"/>
+                        
+                        <h:outputText value = "Administrador Logado: #{managedBeanAdministrador.administrador.nome} "
+                                      rendered="#{managedBeanAdministrador.login}"/> 
+                        <h:commandButton value = "Minha conta" action="dados-administrador" 
+                                         rendered="#{managedBeanAdministrador.login}"/>
+                        <h:commandButton value = "Sair" action="#{managedBeanAdministrador.logout()}" 
+                                         rendered="#{managedBeanAdministrador.login}"/>
                     </p:layoutUnit>
 
                     <p:tabMenu activeIndex="#{param.i}">
@@ -43,33 +50,36 @@
                         </p:menuitem>
                         <p:menuitem value="Sou Empresa" outcome="login-empresa">
                             <f:param name="i" value="2" />
-                        </p:menuitem> 
-                        <p:menuitem value="Sou Administrador" outcome="login-administrador">
-                            <f:param name="i" value="2" />
                         </p:menuitem>
-                        <p:menuitem value="Linhas Aéreas" outcome="lista-empresas">
+                        <p:menuitem value="Sou Administrador" outcome="login-administrador">
                             <f:param name="i" value="3" />
                         </p:menuitem>
-                        <p:menuitem value="Quem Somos" outcome="quem-somos" >
+                        <p:menuitem value="Linhas Aéreas" outcome="lista-empresas">
                             <f:param name="i" value="4" />
                         </p:menuitem>
-                        <p:menuitem value="Cadastro Cliente" outcome="cadastro-cliente">
+                        <p:menuitem value="Quem Somos" outcome="quem-somos" >
                             <f:param name="i" value="5" />
                         </p:menuitem>
-                        <p:menuitem value="Cadastro Empresa" outcome="cadastro-empresa">
+                        <p:menuitem value="Cadastro Cliente" outcome="cadastro-cliente">
                             <f:param name="i" value="6" />
                         </p:menuitem>
+                        <p:menuitem value="Cadastro Empresa" outcome="cadastro-empresa">
+                            <f:param name="i" value="7" />
+                        </p:menuitem>
+                        <p:menuitem value="Cadastro Administrador" outcome="cadastro-administrador">
+                            <f:param name="i" value="8" />
+                        </p:menuitem>
                         <p:menuitem value="Compre Sua Passagem" outcome="consulta-aviao" rendered="#{!managedBeanClientes.login}">
-                             <f:param name="i" value="7" rendered=""/>
+                             <f:param name="i" value="9" rendered=""/>
                         </p:menuitem>
                         <p:menuitem value="Cadastrar Avião" outcome="cadastro-aviao" rendered="#{managedBeanEmpresa.login}">
-                            <f:param name="i" value="8" rendered=""/>
+                            <f:param name="i" value="10" rendered=""/>
                         </p:menuitem>
                         <p:menuitem value="Cadastrar Viagem" outcome="cadastro-viagem" rendered="#{managedBeanEmpresa.login}">
-                            <f:param name="i" value="9" />
+                            <f:param name="i" value="11" />
                         </p:menuitem>
                         <p:menuitem value="Comprar Passagem" outcome="consulta-aviao" rendered="#{managedBeanClientes.login}">
-                            <f:param name="i" value="10" />
+                            <f:param name="i" value="12" />
                         </p:menuitem>
                     </p:tabMenu>
                     <p:layoutUnit position="center">
