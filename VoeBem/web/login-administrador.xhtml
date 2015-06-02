@@ -87,11 +87,11 @@
                         <p:panel header="Login para Administrador">
                             <p:panelGrid columns="2">
                                 <h:outputText value = "CPF: "/>
-                                <p:inputMask mask="999.999.999-99" value = "#{managedBeanClientes.cliente.cpf}" requiredMessage="O CPF é obrigatório"/>
+                                <p:inputMask mask="999.999.999-99" value = "#{managedBeanAdministrador.administrador.cpf}" requiredMessage="O CPF é obrigatório"/>
                                 <h:outputText value = "Senha: "/> 
-                                <p:password value = "#{managedBeanClientes.cliente.senha}" required="true"/>
+                                <p:password value = "#{managedBeanAdministrador.administrador.senha}" required="true"/>
                             </p:panelGrid>
-                            <h:commandButton id="form1" value = "Entrar" action = "#{managedBeanClientes.loginCliente()}"/>
+                            <h:commandButton id="form1" value = "Entrar" action = "#{managedBeanAdministrador.loginAdministrador()}"/>
                         </p:panel>
                         <p:messages showDetail="true"/>
                     </p:layoutUnit>
