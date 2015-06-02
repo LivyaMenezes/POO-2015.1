@@ -66,10 +66,10 @@
                         <p:menuitem value="Compre Sua Passagem" outcome="consulta-aviao" rendered="#{!managedBeanClientes.login}">
                              <f:param name="i" value="9" rendered=""/>
                         </p:menuitem>
-                        <p:menuitem value="Cadastrar Avião" outcome="cadastro-aviao" rendered="#{managedBeanEmpresa.login}">
+                        <p:menuitem value="Cadastrar Avião" outcome="cadastro-aviao" rendered="#{managedBeanEmpresa.login and managedBeanAdministrador.login}">
                             <f:param name="i" value="10" rendered=""/>
                         </p:menuitem>
-                        <p:menuitem value="Cadastrar Viagem" outcome="cadastro-viagem" rendered="#{managedBeanEmpresa.login}">
+                        <p:menuitem value="Cadastrar Viagem" outcome="cadastro-viagem" rendered="#{managedBeanEmpresa.login and managedBeanAdministrador.login}">
                             <f:param name="i" value="11" />
                         </p:menuitem>
                         <p:menuitem value="Comprar Passagem" outcome="consulta-aviao" rendered="#{managedBeanClientes.login}">
