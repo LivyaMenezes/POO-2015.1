@@ -18,7 +18,7 @@
                 <p:layout fullPage="true">
 
                     <p:layoutUnit position="north" size="230" resizable="false" closable="false" collapsible="true">
-                       <h:graphicImage url="/VoeBem.png" width="1010" height="213"/>
+                        <h:graphicImage url="/VoeBem.png" width="1010" height="213"/>
                         <h:outputText value = " Cliente Logado:#{managedBeanClientes.cliente.nome} " 
                                       rendered="#{managedBeanClientes.login}"/> 
                         <h:commandButton value = "Minha conta" action="dados-cliente" 
@@ -32,7 +32,7 @@
                                          rendered="#{managedBeanEmpresa.login}"/>
                         <h:commandButton value = "Sair" action="#{managedBeanEmpresa.logout()}" 
                                          rendered="#{managedBeanEmpresa.login}"/>
-                        
+
                         <h:outputText value = "Administrador Logado: #{managedBeanAdministrador.administrador.nome} "
                                       rendered="#{managedBeanAdministrador.login}"/> 
                         <h:commandButton value = "Minha conta" action="dados-administrador" 
@@ -70,7 +70,7 @@
                             <f:param name="i" value="8" />
                         </p:menuitem>
                         <p:menuitem value="Consulte Viagens" outcome="consulta-aviao" rendered="#{!managedBeanClientes.login}">
-                             <f:param name="i" value="9" rendered=""/>
+                            <f:param name="i" value="9" rendered=""/>
                         </p:menuitem>
                         <p:menuitem value="Cadastrar Avião" outcome="cadastro-aviao" rendered="#{managedBeanEmpresa.login and managedBeanEmpresa.login}">
                             <f:param name="i" value="10" rendered=""/>
@@ -81,14 +81,56 @@
                         <p:menuitem value="Comprar Passagem" outcome="consulta-aviao" rendered="#{managedBeanClientes.login}">
                             <f:param name="i" value="12" />
                         </p:menuitem>
-                    </p:tabMenu>
+                      </p:tabMenu>
 
                     <p:layoutUnit position="center">
                         <p:panel header="Bem-vindo">
-                            Seja bem vindo ao Voe Bem!
-                            
-                        </p:panel>                        
+                            Seja bem vindo ao Voe Bem!                                                   
+                        </p:panel>                    
+                        <p:carousel numVisible="1" itemStyle="height:235px;width:700px;" effect="easeInStrong" headerText="Destinos nacionais" style="margin-bottom:0" >
+                            <p:tab title="Fortaleza-CE">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:graphicImage url="/Fortaleza.JPG" />
+                                    <h:outputText
+                                        value="Sempre é uma boa época para viajar a Fortaleza. Pontos turísticos existem de sobra, mas as atrações mais concorridas são as praias - lá faz sol o ano inteiro, motivo que dá o apelido de Terra do Sol à cidade. A praia do Futuro é um ponto obrigatório de visita, para curtir mar e areia ou desfrutar de uma incrível infraestrutura - internet wi-fi, tobogãs e piscinas com escorregadores estão entre os equipamentos. " />
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Porto de Galinhas-PE">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:graphicImage url="/PortodeGalinhas.JPG" />
+                                    <h:outputText
+                                        value="Porto de Galinhas é, sem dúvida, uma das melhores praias do Brasil. As maravilhas naturais e os resorts de alto padrão presentes no local transformam esse paraíso em um grande protagonista dentre os destinos mais encantadores de todo o litoral brasileiro. Além da areia branca e do mar cristalino, a região proporciona muita diversão como passeios de buggy e de jangada até os recifes de corais." />
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Campos do Jordão">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:graphicImage url="/CamposdoJordao.JPG" />
+                                    <h:outputText
+                                        value="Localizado a 180 quilômetros da capital paulista, Campos do Jordão tem fama de ser um dos melhores destinos de inverno do Estado, mas oferece atrativos interessantes durante o ano inteiro. Rodeada por montanhas e endereço de construções em estilo alpino, a cidade tem entre seus principais pontos turístico o Morro do Elefante (com vista panorâmica da região), o teleférico, o tradicional passeio de trem e os parques Amantikir e Horto Florestal." />
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="São Paulo-SP">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:graphicImage url="/SP.JPG" />
+                                    <h:outputText
+                                        value="Tida como uma das maiores cidades da América do Sul, São Paulo é o lugar da diversidade. Na capital paulista encontra-se de tudo - desde parques para a prática de esportes e lazer, como o Ibirapuera, até bares e clubes que são palco para a agitada vida noturna do destino. Caminhando pela Av. Paulista, é possível perceber toda essa pluralidade. O lugar reúne museus, livrarias, cafés, edifícios imponentes e até parques." />
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Rio de Janeiro-RJ">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:graphicImage url="/Rio.JPG" />
+                                    <h:outputText value="O Rio de Janeiro é uma daquelas cidades ensolaradas, que seduzem despretensiosamente os seus admiradores, logo à primeira vista. Não por acaso, ostenta o título de cidade maravilhosa. Afinal, graças à simpatia divina, o Rio de Janeiro já era um paraíso ecológico perdido em meio ao centro urbano, antes mesmo que se falasse em ecologia. Essa inspiração geográfica é um dos destinos turísticos brasileiros mais requisitados pelos turistas locais e do mundo." />
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Gramado-RS">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <p:graphicImage url="/Gramado.JPG" />
+                                    <h:outputText value="Gramado está localizada na Região das Hortência no estado do Rio Grande do Sul. Além das típicas atrações fixas, como a gastronomia local, os parques Snowland e o Greenland, o Museu do Chocolate e os lagos Negro e Joaquina Bier, a cidade conta com eventos importantes como o Festival de Cinema, o Festival Mundial de Publicidade e o Natal Luz. Com tantos motivos para conhecê-la, os turistas costumam comprar os melhores pacotes de viagem para Gramado que apresentam variadas propostas." />
+                                </h:panelGrid>
+                            </p:tab>
+                        </p:carousel>
                     </p:layoutUnit>
+
                 </p:layout>
             </h:form>
         </h:body>
