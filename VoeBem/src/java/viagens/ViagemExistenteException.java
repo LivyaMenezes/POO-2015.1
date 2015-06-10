@@ -6,9 +6,11 @@
 package viagens;
 
 /**
- *
+ * Aqui apenas lança uma execeção caso o usuario for pesquisar uma venda e a venda ja exista 
  * @author Raquel Calado
  */
+
+
 public class ViagemExistenteException extends Exception{
     ViagemExistenteException(){
         super("A viagem já existe");

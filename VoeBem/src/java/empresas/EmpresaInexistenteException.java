@@ -6,7 +6,7 @@
 package empresas;
 
 /**
- *
+ *lança uma execeção caso a empresa não esteja cadastrada
  * @author Raquel Calado
  */
 public class EmpresaInexistenteException extends Exception{

@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
 import viagens.Viagem;
 
 /**
- *
+ * classe de persitencia de dados no banco 
  * @author Raquel Calado
  */
 @Stateless
@@ -28,7 +28,11 @@ public class RepositorioEmpresaJPA implements RepositorioEmpresa, Serializable {
     public RepositorioEmpresaJPA() {
         
     }
-
+/**
+ * metodo de adicionar empresas 
+ * 
+ * 
+ */
     @Override
     public void adicionar(Empresa ep) throws ErroInternoException {
         try {
@@ -37,7 +41,11 @@ public class RepositorioEmpresaJPA implements RepositorioEmpresa, Serializable {
             throw new ErroInternoException(e);
         }
     }
-
+/**
+ * Metodo de remoção de empresas
+ * 
+ * 
+ */
     @Override
     public void remover(long id_empresa) throws ErroInternoException, EmpresaInexistenteException {
         Empresa ep = buscarEmpresa(id_empresa);
@@ -48,7 +56,9 @@ public class RepositorioEmpresaJPA implements RepositorioEmpresa, Serializable {
 
         }
     }
-
+/**
+ * metodo de atualização de empresas
+ */
     @Override
     public void atualizar(Empresa ep) throws ErroInternoException, EmpresaInexistenteException {
 
@@ -104,7 +114,12 @@ public class RepositorioEmpresaJPA implements RepositorioEmpresa, Serializable {
             throw new ErroInternoException(e);
        }
     }
-
+/**
+ * 
+ * metodo de listagem de viagens
+ * 
+ * 
+ */
     @Override
     public List<Viagem> listarViagens(Empresa empresa) throws ErroInternoException {
         TypedQuery<Viagem> listarViagens = this.em.createQuery("SELECT v FROM Viagem v WHERE v.empresa = :empresa", Viagem.class);

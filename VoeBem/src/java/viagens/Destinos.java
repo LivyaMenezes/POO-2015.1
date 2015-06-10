@@ -6,7 +6,7 @@
 package viagens;
 
 /**
- *
+ * Aqui são os destinos das viagens 
  * @author Raquel Calado
  */
 public enum Destinos {

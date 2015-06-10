@@ -55,7 +55,10 @@ public class Viagem implements Serializable {
         this.valor = valor;
     }
 
- 
+ /**
+  * MEtotos get's e set's
+  * @return 
+  */
     @Enumerated(EnumType.STRING) 
     public Destinos getOrigem() {
         return origem;

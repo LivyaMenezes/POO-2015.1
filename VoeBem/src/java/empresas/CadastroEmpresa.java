@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
 import viagens.Viagem;
 
 /**
- *
+ * Classe de cadastro de empresas 
  * @author Raquel Calado
  */
 @Stateless

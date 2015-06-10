@@ -13,7 +13,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
- *
+ * Metodo de cadastro de viagens 
  * @author Raquel Calado
  */
 @Stateless
@@ -25,7 +25,12 @@ public class CadastroViagem {
     public CadastroViagem(){
         
     }
-    
+    /**
+     * 
+     * Aqui adiciona uma viagem, caso não consiga entra na exceção 
+     * 
+     * 
+     */
     public void adicionar(Viagem v) throws ErroInternoException, ViagemExistenteException{
         try{
             Viagem viagem2 =  this.viagem.buscarViagem(v.getId_viagem());

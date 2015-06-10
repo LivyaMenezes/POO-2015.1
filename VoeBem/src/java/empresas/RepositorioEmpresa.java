@@ -12,7 +12,7 @@ import javax.ejb.Local;
 import viagens.Viagem;
 
 /**
- *
+ *  repositorio chama os metodos da classe RepositorioEmpresaJPA, que a classe que se comunica com o banco
  * @author Raquel Calado
  */
 @Local
