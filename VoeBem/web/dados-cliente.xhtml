@@ -89,7 +89,16 @@
                             
                         </p:panelGrid>                       
                         <p><h:commandButton value="Minhas Compras" action="lista-vendas.xhtml" /></p>
-                        <p><h:commandButton value="Cancelar Conta" action="#{managedBeanClientes.removerCliente()}" /></p>
+                         <center>
+                             <p:commandButton value="Excluir perfil" actionListener="#{managedBeanClientes.removerCliente()}"
+                                              action="#{managedBeanClientes.logout()}">
+                                <p:confirm header="Confirmação" message="Deseja mesmo excluir essa conta?" icon="ui-icon-alert"/>
+                            </p:commandButton>
+                        </center>
+                         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
                   </p:panel>
                   </p:layoutUnit>
             </p:layout>
