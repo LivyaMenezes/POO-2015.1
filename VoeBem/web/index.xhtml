@@ -81,8 +81,8 @@
                         <p:menuitem value="Comprar Passagem" outcome="consulta-aviao" rendered="#{managedBeanClientes.login}">
                             <f:param name="i" value="12" />
                         </p:menuitem>
-                        <p:menuitem value="Ver Ofertas" outcome="lista-viagens">
-                            <f:param name="i" value="12" />
+                        <p:menuitem  value="Ver Ofertas" outcome="lista-viagens" >
+                            <f:param name="i" value="13"  />
                         </p:menuitem>
                     </p:tabMenu>
                     <p:layoutUnit position="top">
@@ -159,12 +159,18 @@
                                 </h:panelGrid>
                             </p:tab>
                         </p:tabView>                    
-
+                        <h3>VoeBem Viagens: Passagens aéreas para destinos incríveis!</h3>
+                        <p:imageSwitch effect="fade" id="fadeEffect">
+                           <p:graphicImage url="/Img1.jpg" />
+                            <p:graphicImage url="/img2.jpg" />
+                            <p:graphicImage url="/Img3.png" />
+                            <p:graphicImage url="/Img4.jpg" />
+                        </p:imageSwitch>
                     </p:layoutUnit>
 
 
                 </p:layout>
-                
+
             </h:form>
         </h:body>
     </f:view>
