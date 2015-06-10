@@ -18,7 +18,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 import vendas.Venda;
+import vendas.VendaInexistenteException;
 import viagens.ViagemInexistenteException;
 
 /**
@@ -27,8 +29,8 @@ import viagens.ViagemInexistenteException;
  */
 @ManagedBean
 @SessionScoped
-public class ManagedBeanVenda implements Serializable{
-    
+public class ManagedBeanVenda implements Serializable {
+
     @EJB
     private Fachada fachada;
     private Venda venda;
@@ -124,6 +126,25 @@ public class ManagedBeanVenda implements Serializable{
             contexto.addMessage(null, msg);
         }
         return null;
+    }   
+
+    public String removerVenda() throws ErroInternoException, VendaInexistenteException {
+        try {
+            this.fachada.removerVenda(venda.getCodigoVenda());
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Compra removida com sucesso.");
+            contexto.addMessage(null, msg);
+            return "index.xhtml";
+        } catch (ErroInternoException eie) {
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro Interno", " Ocorreu um erro interno inesperado " + eie.getMessage());
+            contexto.addMessage(null, msg);
+        } catch (VendaInexistenteException vie) {
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Compra Inexistente", "Compra não existente");
+            contexto.addMessage(null, msg);
+        }
+        return null;
     }
-    
 }
+        

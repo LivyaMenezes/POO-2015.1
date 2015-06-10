@@ -5,6 +5,7 @@
  */
 package viagens;
 
+import empresas.Empresa;
 import index.ErroInternoException;
 import java.util.Date;
 import java.util.List;
@@ -51,6 +52,12 @@ public class CadastroViagem {
     public List<Viagem> consultaViagens(Destinos origem, Destinos destino, Date data) throws ViagemInexistenteException, ErroInternoException{
         return this.viagem.consultaViagens(origem, destino, data);
     }
-    
-    
+
+//     public List<Viagem> listaViagens(Viagem viagem) throws ErroInternoException {
+//        return this.viagem.listaViagens(viagem);
+//    }    
+
+    public List<Viagem> listaViagens () throws ErroInternoException{
+        return this.viagem.listaViagens();
+    }
 }

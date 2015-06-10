@@ -82,7 +82,7 @@
                             <f:param name="i" value="12" />
                         </p:menuitem>
                     </p:tabMenu>
-                     <p:layoutUnit position="center">
+                    <p:layoutUnit position="center">
                         <p:panel header="Minhas compras">
                             <p:panelGrid columns="2">
                                 <p:dataTable  value = "#{managedBeanVenda.listarVendasCliente(managedBeanClientes.cliente)}" var ="v">
@@ -100,14 +100,14 @@
                                     </p:column>
                                     <p:column headerText ="Valor">
                                         <h:outputText value ="R$ #{v.id_viagem.valor}"/>
-                                    </p:column>
-                                    <p:column headerText ="Poltrona">
-                                        <h:outputText value ="#{v.id_poltrona}"/>
-                                    </p:column>                                    
+                                    </p:column>                                                                    
                                     <p:column headerText ="Código da Venda">
                                         <h:outputText value ="#{v.codigoVenda}"/>
-                                    </p:column>
-                                </p:dataTable>
+                                    </p:column>  
+                                    <p:column>
+                                        <p><h:commandButton value="Cancelar Compra" action="#{managedBeanVenda.removerVenda()}" /></p>
+                                    </p:column>    
+                                </p:dataTable> 
                             </p:panelGrid>                            
                         </p:panel>
                         <p:messages showDetail="true"/>

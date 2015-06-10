@@ -79,8 +79,8 @@ public class Fachada  implements Serializable{
         this.cadCliente.atualizar(c);
     }
 
-    public void remover(long id_cliente) throws ErroInternoException, ClienteInexistenteException, AdministradorInexistenteException {
-        this.cadCliente.remover(id_cliente);
+    public void removerCliente(long id_cliente) throws ErroInternoException, ClienteInexistenteException, AdministradorInexistenteException {
+        this.cadCliente.removerCliente(id_cliente);
     }
 
     public Cliente loginCliente(String cpf, String senha) throws ErroInternoException, ClienteInexistenteException {
@@ -193,7 +193,7 @@ public class Fachada  implements Serializable{
     }
     
       public void removerVenda(long codigoVenda) throws ErroInternoException, VendaInexistenteException {
-        this.venda.remover(codigoVenda);
+        this.venda.removerVenda(codigoVenda);
                 
     }
 
@@ -224,5 +224,12 @@ public class Fachada  implements Serializable{
     public List<Venda> listarVendasCliente(Cliente cliente) throws ErroInternoException {
         return this.venda.listarVendasCliente(cliente);
     }
-    
+
+   public List<Viagem> listaViagens() throws ErroInternoException {
+        return this.viagem.listaViagens();
+    }
+   public List<Venda> buscarVendaPorCliente(Cliente cliente) throws ErroInternoException, VendaInexistenteException{
+         return this.venda.buscarVendaPorCliente(cliente);
+       
+     }
 }

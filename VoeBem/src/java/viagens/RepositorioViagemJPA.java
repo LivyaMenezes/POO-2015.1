@@ -93,5 +93,18 @@ public class RepositorioViagemJPA implements RepositorioViagem, Serializable {
             throw new ErroInternoException(e);
         }
     }
+    @Override
+    public List<Viagem> listaViagens() throws ErroInternoException {
+
+        try {
+            TypedQuery<Viagem> listaViagens = this.em.createQuery("SELECT v FROM Viagem v", Viagem.class);
+            if (listaViagens.getResultList().isEmpty()){
+                throw new ViagemInexistenteException();
+            }
+            return listaViagens.getResultList();
+        } catch (Exception e) {
+            throw new ErroInternoException(e);
+        }
+    }
 }
 

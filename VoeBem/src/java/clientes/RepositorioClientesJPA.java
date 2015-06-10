@@ -11,7 +11,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -39,7 +38,7 @@ public class RepositorioClientesJPA implements RepositorioClientes, Serializable
     }
 
     @Override
-    public void remover(long id_cliente) throws ErroInternoException, ClienteInexistenteException {
+    public void removerCliente(long id_cliente) throws ErroInternoException, ClienteInexistenteException {
         Cliente cliente = this.buscarCliente(id_cliente);
         try {
             this.em.remove(cliente);

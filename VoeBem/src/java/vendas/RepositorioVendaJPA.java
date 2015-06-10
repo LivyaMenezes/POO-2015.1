@@ -10,6 +10,7 @@ import index.ErroInternoException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -92,7 +93,7 @@ public class RepositorioVendaJPA implements RepositorioVenda {
     }
     
     @Override
-    public void remover(long codigoVenda) throws ErroInternoException, VendaInexistenteException {
+    public void removerVenda(long codigoVenda) throws ErroInternoException, VendaInexistenteException {
     Venda venda = this.buscarVenda(codigoVenda);
             try{
                 this.em.remove(venda);
@@ -101,5 +102,18 @@ public class RepositorioVendaJPA implements RepositorioVenda {
                 throw new ErroInternoException(e); 
             }    
     }
+    @Override
+  public List<Venda> buscarVendaPorCliente(Cliente cliente) throws ErroInternoException, VendaInexistenteException{
+      try{
+            TypedQuery<Venda> listaVenda = this.em.createQuery("SELECT v FROM Venda v WHERE v.cliente =:cliente", Venda.class);
+            listaVenda.setParameter("cliente", cliente);
+            return listaVenda.getResultList();
+            
+        }catch (NoResultException e) {
+            throw new VendaInexistenteException();
+        }catch(Exception e){
+            throw new ErroInternoException(e);
+        }
+  }
 }
 

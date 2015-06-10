@@ -63,8 +63,12 @@ public class ManagedBeanViagem implements Serializable{
         this.aviaoSelecionado = aviaoSelecionado;
     }
 
-    public List<Viagem> getListaViagens() {
-        return listaViagens;
+    public List<Viagem> getListaViagens() throws ErroInternoException {
+        try {
+            return this.fachada.listaViagens();
+        } catch (ErroInternoException ex) {
+            throw ex;
+        }
     }
 
     public void setListaViagens(List<Viagem> listaViagens) {

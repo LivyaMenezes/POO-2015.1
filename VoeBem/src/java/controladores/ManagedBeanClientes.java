@@ -19,6 +19,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import vendas.Venda;
+import vendas.VendaInexistenteException;
 
 /**
  *
@@ -27,16 +29,17 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class ManagedBeanClientes implements Serializable {
-    
+
     @EJB
     private Fachada fachada;
     private Cliente cliente;
     private boolean login;
+    private List<Venda> listaVenda;
 
     public ManagedBeanClientes() {
         this.cliente = new Cliente();
     }
-    
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -44,6 +47,7 @@ public class ManagedBeanClientes implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
     public boolean isLogin() {
         return login;
     }
@@ -77,12 +81,41 @@ public class ManagedBeanClientes implements Serializable {
         return null;
     }
 
-    public String removerCliente() throws AdministradorInexistenteException {
+//    public String removerCliente   () throws ErroInternoException, ClienteInexistenteException, AdministradorInexistenteException {
+//        try {
+//            this.fachada.removerCliente(cliente.getId_cliente());
+//            FacesContext contexto = FacesContext.getCurrentInstance();
+//            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cliente removido com sucesso.");
+//            contexto.addMessage(null, msg);
+//            this.login=false;
+//            return "index.xhtml";
+//        } catch (ErroInternoException eie) {
+//            FacesContext contexto = FacesContext.getCurrentInstance();
+//            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro Interno", " Ocorreu um erro interno inesperado " + eie.getMessage());
+//            contexto.addMessage(null, msg);
+//        } catch (ClienteInexistenteException cie) {
+//            FacesContext contexto = FacesContext.getCurrentInstance();
+//            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente Inexistente", "Cliente não existente");
+//            contexto.addMessage(null, msg);
+//        }
+//        return null;
+//    }
+    
+    public String removerCliente   () throws ErroInternoException, ClienteInexistenteException, AdministradorInexistenteException {
         try {
-            this.fachada.remover(cliente.getId_cliente());
+            this.listaVenda = this.fachada.buscarVendaPorCliente(cliente);
+                   for(Venda v : listaVenda){
+             this.fachada.removerVenda(v.getCodigoVenda());
+             }
+            this.fachada.removerCliente(cliente.getId_cliente());
+            this.listaVenda.clear();
+            
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cadastro removido com sucesso.");
             contexto.addMessage(null, msg);
+            this.login = false;
+            this.cliente = new Cliente();
+        
         } catch (ErroInternoException eie) {
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro Interno", " Ocorreu um erro interno inesperado " + eie.getMessage());
@@ -91,8 +124,30 @@ public class ManagedBeanClientes implements Serializable {
             FacesContext contexto = FacesContext.getCurrentInstance();
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente Inexistente", "Cliente não existente");
             contexto.addMessage(null, msg);
+        }catch(VendaInexistenteException oie){
+            try{
+                this.fachada.removerCliente(cliente.getId_cliente());
+                this.login = false;
+                }catch(ErroInternoException err){
+                    FacesContext contexto = FacesContext.getCurrentInstance();
+                    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro Interno", " Ocorreu um erro interno inesperado " + err.getMessage());
+                    contexto.addMessage(null, msg);
+                } catch (ClienteInexistenteException cie) {
+                    FacesContext contexto = FacesContext.getCurrentInstance();
+                    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente Inexistente", "Cliente não existente");
+                    contexto.addMessage(null, msg);
         }
-        return null;
+        }
+        this.login = false;
+        return "index.xhtml";
+    }
+    
+    public List<Venda> getListaVenda() {
+        return listaVenda;
+    }
+
+    public void setListaVenda(List<Venda> listaVenda) {
+        this.listaVenda = listaVenda;
     }
 
     public String buscarCliente() {
@@ -114,16 +169,15 @@ public class ManagedBeanClientes implements Serializable {
     }
 
     public String atualizarsenhaCliente() throws IOException {
-        try{
+        try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("atualizarsenha-cliente.xhtml");
-        }
-        catch(IOException ioe){
+        } catch (IOException ioe) {
             throw ioe;
         }
         return null;
     }
 
-    public String senhaatualizadaCliente()  {
+    public String senhaatualizadaCliente() {
         try {
             this.fachada.atualizar(this.cliente);
             return "dadospessoais-cliente.xhtml";
@@ -179,12 +233,11 @@ public class ManagedBeanClientes implements Serializable {
     }
 
     public String logout() throws ErroInternoException, IOException {
-        try{
-        login = false;
-        this.cliente = new Cliente();          
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-        }
-        catch(IOException ioe){
+        try {
+            login = false;
+            this.cliente = new Cliente();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        } catch (IOException ioe) {
             throw ioe;
         }
         return null;
@@ -198,5 +251,5 @@ public class ManagedBeanClientes implements Serializable {
             throw new ErroInternoException(e);
         }
     }
-    
+
 }

@@ -28,9 +28,10 @@ public interface RepositorioVenda extends Serializable{
     
     public List<Venda> listarVendas() throws ErroInternoException;
     
-    public void remover(long codigoVenda) throws ErroInternoException, VendaInexistenteException;
+    public void removerVenda(long codigoVenda) throws ErroInternoException, VendaInexistenteException;
 
-    
+    public List<Venda> buscarVendaPorCliente(Cliente cliente) throws ErroInternoException, VendaInexistenteException;
+   
 
    
 }
