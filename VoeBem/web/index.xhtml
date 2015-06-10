@@ -81,13 +81,16 @@
                         <p:menuitem value="Comprar Passagem" outcome="consulta-aviao" rendered="#{managedBeanClientes.login}">
                             <f:param name="i" value="12" />
                         </p:menuitem>
-                      </p:tabMenu>
+                    </p:tabMenu>
 
                     <p:layoutUnit position="center">
                         <p:panel header="Bem-vindo">
                             Seja bem vindo ao Voe Bem!                                                   
-                        </p:panel>                    
-                        <p:carousel numVisible="1" itemStyle="height:235px;width:700px;" effect="easeInStrong" headerText="Destinos nacionais" style="margin-bottom:0" >
+                        </p:panel>     
+
+                        <h3>Os Melhores Destinos para as Férias de Julho</h3>
+                        <p:tabView orientation="left">
+
                             <p:tab title="Fortaleza-CE">
                                 <h:panelGrid columns="2" cellpadding="10">
                                     <p:graphicImage url="/Fortaleza.JPG" />
@@ -102,7 +105,7 @@
                                         value="Porto de Galinhas é, sem dúvida, uma das melhores praias do Brasil. As maravilhas naturais e os resorts de alto padrão presentes no local transformam esse paraíso em um grande protagonista dentre os destinos mais encantadores de todo o litoral brasileiro. Além da areia branca e do mar cristalino, a região proporciona muita diversão como passeios de buggy e de jangada até os recifes de corais." />
                                 </h:panelGrid>
                             </p:tab>
-                            <p:tab title="Campos do Jordão">
+                            <p:tab title="Campos do Jordão-SP">
                                 <h:panelGrid columns="2" cellpadding="10">
                                     <p:graphicImage url="/CamposdoJordao.JPG" />
                                     <h:outputText
@@ -128,7 +131,7 @@
                                     <h:outputText value="Gramado está localizada na Região das Hortência no estado do Rio Grande do Sul. Além das típicas atrações fixas, como a gastronomia local, os parques Snowland e o Greenland, o Museu do Chocolate e os lagos Negro e Joaquina Bier, a cidade conta com eventos importantes como o Festival de Cinema, o Festival Mundial de Publicidade e o Natal Luz. Com tantos motivos para conhecê-la, os turistas costumam comprar os melhores pacotes de viagem para Gramado que apresentam variadas propostas." />
                                 </h:panelGrid>
                             </p:tab>
-                        </p:carousel>
+                            </p:tabView>
                     </p:layoutUnit>
 
                 </p:layout>
