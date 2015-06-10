@@ -81,12 +81,39 @@
                         <p:menuitem value="Comprar Passagem" outcome="consulta-aviao" rendered="#{managedBeanClientes.login}">
                             <f:param name="i" value="12" />
                         </p:menuitem>
+                        <p:menuitem value="Ver Ofertas" outcome="lista-viagens">
+                            <f:param name="i" value="12" />
+                        </p:menuitem>
                     </p:tabMenu>
+                    <p:layoutUnit position="top">
+                        <p:panel header="Porque comprar no VoeBem?">                        
+                            <p:growl id="messages"/>
 
+                            <p:menubar>
+                                <p:submenu  label="" icon="ui-icon-check" >
+                                    <p:menuitem value="Melhor preço garantido em passagens aéreas" />                                
+                                </p:submenu>
+                                <p:submenu  label="" icon="ui-icon-image" >
+                                    <p:menuitem value="Monte sua viagem com comodidade" />                                
+                                </p:submenu>
+                                <p:submenu  label="" icon="ui-icon-calendar" >
+                                    <p:menuitem value="Procure as melhores datas para sua viagem" />                                
+                                </p:submenu>
+                                <p:submenu  label="" icon="ui-icon-circle-zoomin" >
+                                    <p:menuitem value="Os melhores preços da web" />                                
+                                </p:submenu> 
+                                <p:submenu  label="" icon="ui-icon-locked" >
+                                    <p:menuitem value="Segurança garantida" />                                
+                                </p:submenu>                                  
+                            </p:menubar>
+                        </p:panel>
+                    </p:layoutUnit> 
                     <p:layoutUnit position="center">
                         <p:panel header="Bem-vindo">
-                            Seja bem vindo ao Voe Bem!                                                   
+                            Seja bem vindo ao Voe Bem!           
+
                         </p:panel>     
+
 
                         <h3>Os Melhores Destinos para as Férias de Julho</h3>
                         <p:tabView orientation="left">
@@ -131,10 +158,13 @@
                                     <h:outputText value="Gramado está localizada na Região das Hortência no estado do Rio Grande do Sul. Além das típicas atrações fixas, como a gastronomia local, os parques Snowland e o Greenland, o Museu do Chocolate e os lagos Negro e Joaquina Bier, a cidade conta com eventos importantes como o Festival de Cinema, o Festival Mundial de Publicidade e o Natal Luz. Com tantos motivos para conhecê-la, os turistas costumam comprar os melhores pacotes de viagem para Gramado que apresentam variadas propostas." />
                                 </h:panelGrid>
                             </p:tab>
-                            </p:tabView>
+                        </p:tabView>                    
+
                     </p:layoutUnit>
 
+
                 </p:layout>
+                
             </h:form>
         </h:body>
     </f:view>
