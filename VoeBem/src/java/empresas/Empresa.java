@@ -37,7 +37,10 @@ public class Empresa implements Serializable{
         this.senha = senha;
         
     }
-    
+    /**
+     * metodos get's e set's
+     * @return 
+     */
      @Column (unique = true, nullable = false)
     public String getCnpj() {
         return cnpj;
